@@ -548,9 +548,9 @@ export default function Home() {
             <div className={styles.tokenomicsDescV1}>
               25% of tokens allocated to burn wallet for milestone unlocks.
             </div>
-            {reserveWallet && (
-              <div className={styles.burnWalletAddress}>{reserveWallet}</div>
-            )}
+            <div className={styles.burnWalletAddress}>
+              Creator Wallet: 9hJ5y72q4piDGatvM9bZw7p1NcQ1AYjkUiTbpXDi8Ett
+            </div>
           </div>
 
           {/* Zero Tax */}
