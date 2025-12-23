@@ -260,6 +260,10 @@ function createPumpFunOperations(connection) {
      */
     async buyWithJupiter({ wallet, tokenAddress, amountSol }) {
       try {
+        if (!process.env.JUPITER_ULTRA_API_KEY) {
+          throw new Error('JUPITER_ULTRA_API_KEY not configured');
+        }
+        
         const amountLamports = Math.floor(amountSol * 1e9);
         
         console.log(`🚀 Using Jupiter Ultra for swap...`);
@@ -272,7 +276,17 @@ function createPumpFunOperations(connection) {
           taker: wallet.publicKey.toString()
         });
         
-        const orderResponse = await fetch(`${JUPITER_ULTRA_API}/order?${params}`);
+        const orderResponse = await fetch(`${JUPITER_ULTRA_API}/order?${params}`, {
+          headers: {
+            'x-api-key': process.env.JUPITER_ULTRA_API_KEY
+          },
+          timeout: 15000
+        });
+        
+        if (!orderResponse.ok) {
+          throw new Error(`Order API error: ${orderResponse.status}`);
+        }
+        
         const order = await orderResponse.json();
         
         if (order.error || order.errorMessage) {
@@ -295,12 +309,20 @@ function createPumpFunOperations(connection) {
         
         const executeResponse = await fetch(`${JUPITER_ULTRA_API}/execute`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'x-api-key': process.env.JUPITER_ULTRA_API_KEY
+          },
           body: JSON.stringify({
             signedTransaction,
             requestId: order.requestId
-          })
+          }),
+          timeout: 60000
         });
+        
+        if (!executeResponse.ok) {
+          throw new Error(`Execute API error: ${executeResponse.status}`);
+        }
         
         const result = await executeResponse.json();
         
@@ -400,6 +422,10 @@ function createPumpFunOperations(connection) {
      */
     async sellWithJupiter({ wallet, tokenAddress, tokenAmount }) {
       try {
+        if (!process.env.JUPITER_ULTRA_API_KEY) {
+          throw new Error('JUPITER_ULTRA_API_KEY not configured');
+        }
+        
         const amountRaw = Math.floor(tokenAmount);
         
         console.log(`🚀 Selling via Jupiter...`);
@@ -411,7 +437,17 @@ function createPumpFunOperations(connection) {
           taker: wallet.publicKey.toString()
         });
         
-        const orderResponse = await fetch(`${JUPITER_ULTRA_API}/order?${params}`);
+        const orderResponse = await fetch(`${JUPITER_ULTRA_API}/order?${params}`, {
+          headers: {
+            'x-api-key': process.env.JUPITER_ULTRA_API_KEY
+          },
+          timeout: 15000
+        });
+        
+        if (!orderResponse.ok) {
+          throw new Error(`Order API error: ${orderResponse.status}`);
+        }
+        
         const order = await orderResponse.json();
         
         if (order.error || order.errorMessage) {
@@ -432,12 +468,20 @@ function createPumpFunOperations(connection) {
         
         const executeResponse = await fetch(`${JUPITER_ULTRA_API}/execute`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'x-api-key': process.env.JUPITER_ULTRA_API_KEY
+          },
           body: JSON.stringify({
             signedTransaction,
             requestId: order.requestId
-          })
+          }),
+          timeout: 60000
         });
+        
+        if (!executeResponse.ok) {
+          throw new Error(`Execute API error: ${executeResponse.status}`);
+        }
         
         const result = await executeResponse.json();
         
