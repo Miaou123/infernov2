@@ -9,7 +9,14 @@
     "buyback": "node src/scripts/buyback.js",
     "milestone": "node src/scripts/milestone.js",
     "init-db": "node src/scripts/init-db.js",
-    "start-all": "concurrently \"npm run start\" \"npm run buyback\" \"npm run milestone\""
+    "start-bot": "node src/scripts/twitter-bot.js",
+    "test-bot": "TEST_MODE=true node src/scripts/twitter-bot.js",
+    "test-milestone-tweet": "TEST_MODE=true SINGLE_TWEET=true TEST_TYPE=milestone node src/scripts/twitter-bot.js",
+    "test-buyback-tweet": "TEST_MODE=true SINGLE_TWEET=true TEST_TYPE=buyback node src/scripts/twitter-bot.js",
+    "preview-milestone": "SINGLE_TWEET=true TEST_TYPE=milestone node src/scripts/twitter-bot.js",
+    "preview-buyback": "SINGLE_TWEET=true TEST_TYPE=buyback node src/scripts/twitter-bot.js",
+    "start-all": "concurrently \"npm run start\" \"npm run buyback\" \"npm run milestone\" \"npm run start-bot\"",
+    "start-scripts": "concurrently \"npm run buyback\" \"npm run milestone\" \"npm run start-bot\""
   },
   "dependencies": {
     "@pump-fun/pump-sdk": "^1.24.0",
@@ -24,7 +31,8 @@
     "next": "^14.2.0",
     "node-cron": "^3.0.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "twitter-api-v2": "^1.28.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.11",

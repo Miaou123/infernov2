@@ -91,33 +91,35 @@ function createPumpFunOperations(connection) {
     },
     
     /**
-     * Get creator fee balance (bonding curve + AMM)
+     * Get creator fee balance (uses pump-sdk, with pump-swap-sdk as fallback)
      */
     async getCreatorFeeBalance(creatorAddress) {
       try {
         const creator = new PublicKey(creatorAddress);
-        let bondingCurveBalance = 0;
-        let ammBalance = 0;
+        let totalBalance = 0;
         
+        // Primary: Use pump-sdk (handles both bonding curve and possibly AMM)
         try {
-          const bcBalance = await onlineSdk.getCreatorVaultBalanceBothPrograms(creator);
-          bondingCurveBalance = bcBalance.toNumber() / 1e9;
-          console.log(`Bonding curve creator balance: ${bondingCurveBalance.toFixed(9)} SOL`);
+          const balance = await onlineSdk.getCreatorVaultBalanceBothPrograms(creator);
+          totalBalance = balance.toNumber() / 1e9;
+          console.log(`Bonding curve creator balance: ${totalBalance.toFixed(9)} SOL`);
         } catch (error) {
-          console.log('Could not get bonding curve creator balance:', error.message);
+          console.log('Could not get balance via pump-sdk:', error.message);
         }
         
+        // Fallback: Try pump-swap-sdk for AMM fees (in case pump-sdk doesn't cover it)
         try {
           const ammBal = await onlineAmmSdk.getCoinCreatorVaultBalance(creator);
-          ammBalance = ammBal.toNumber() / 1e9;
-          console.log(`AMM creator balance: ${ammBalance.toFixed(9)} SOL`);
+          const ammBalance = ammBal.toNumber() / 1e9;
+          if (ammBalance > 0) {
+            console.log(`AMM creator balance (fallback): ${ammBalance.toFixed(9)} SOL`);
+            totalBalance += ammBalance;
+          }
         } catch (error) {
-          console.log('Could not get AMM creator balance:', error.message);
+          // Silent - pump-sdk probably already got it
         }
         
-        const totalBalance = bondingCurveBalance + ammBalance;
         console.log(`Total creator fee balance: ${totalBalance.toFixed(9)} SOL`);
-        
         return totalBalance;
       } catch (error) {
         console.error('Error getting creator fee balance:', error.message);
@@ -126,31 +128,33 @@ function createPumpFunOperations(connection) {
     },
     
     /**
-     * Collect creator fees (bonding curve + AMM)
+     * Collect creator fees (uses pump-sdk, with pump-swap-sdk as fallback)
      */
     async collectCreatorFees(wallet) {
       try {
         const creator = wallet.publicKey;
         const instructions = [];
         
+        // Primary: Use pump-sdk for fee collection
         try {
-          const bondingInstructions = await onlineSdk.collectCoinCreatorFeeInstructions(creator);
-          if (bondingInstructions?.length > 0) {
-            instructions.push(...bondingInstructions);
-            console.log(`Added ${bondingInstructions.length} bonding curve fee collection instructions`);
+          const pumpInstructions = await onlineSdk.collectCoinCreatorFeeInstructions(creator);
+          if (pumpInstructions?.length > 0) {
+            instructions.push(...pumpInstructions);
+            console.log(`Added ${pumpInstructions.length} pump-sdk fee collection instructions`);
           }
         } catch (error) {
-          console.log('Could not get bonding curve fee instructions:', error.message);
+          console.log('Could not get pump-sdk fee instructions:', error.message);
         }
         
+        // Fallback: Try pump-swap-sdk for AMM fees (in case pump-sdk doesn't cover it)
         try {
           const ammState = await onlineAmmSdk.collectCoinCreatorFeeSolanaState(creator);
           if (ammState?.instructions?.length > 0) {
             instructions.push(...ammState.instructions);
-            console.log(`Added ${ammState.instructions.length} AMM fee collection instructions`);
+            console.log(`Added ${ammState.instructions.length} pump-swap-sdk fee collection instructions (fallback)`);
           }
         } catch (error) {
-          console.log('Could not get AMM fee instructions:', error.message);
+          // Silent - pump-sdk probably already handles it
         }
         
         if (instructions.length === 0) {

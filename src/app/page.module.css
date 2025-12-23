@@ -1,0 +1,1054 @@
+/* Page Module Styles - v1 Design Match */
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .heroBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(ellipse at center bottom, rgba(255, 69, 0, 0.15) 0%, transparent 70%);
+  }
+  
+  /* Logo Container with Glow Effect */
+  .logoContainer {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logoGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.4) 0%, rgba(255, 140, 0, 0.2) 40%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 0.7;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+  
+  .logo {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.5));
+    animation: logoFloat 4s ease-in-out infinite;
+  }
+  
+  @keyframes logoFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Token Name - Hidden since we use logo instead */
+  .tokenName {
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    background: linear-gradient(to right, #ff4500, #ff8c00, #ffcc00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 69, 0, 0.25);
+    font-family: 'Iceland', monospace;
+  }
+  
+  /* Slogan */
+  .slogan {
+    color: #aaaaaa;
+    margin-bottom: 40px;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+  /* Hero Buttons */
+  .heroButtons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .button {
+    padding: 12px 28px;
+    background: linear-gradient(45deg, #ff4500, #ff8c00);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(255, 69, 0, 0.3);
+  }
+  
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+  }
+  
+  .buttonOutline {
+    background: transparent;
+    border: 1px solid #ff4500;
+    box-shadow: none;
+  }
+  
+  .buttonOutline:hover {
+    background: rgba(255, 69, 0, 0.1);
+  }
+  
+  .buttonIcon {
+    margin-left: 8px;
+  }
+  
+  /* Contract Address Display */
+  .contractDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .contractAddress {
+    background-color: rgba(255, 69, 0, 0.1);
+    border: 1px solid rgba(255, 69, 0, 0.3);
+    border-radius: 50px;
+    padding: 10px 30px;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: 90%;
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+  }
+  
+  .contractAddress:hover {
+    background-color: rgba(255, 69, 0, 0.15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .copyIcon {
+    margin-left: 10px;
+    cursor: pointer;
+    color: #aaaaaa;
+    transition: all 0.3s;
+    font-size: 16px;
+  }
+  
+  .copyIcon:hover {
+    color: #ff4500;
+    transform: scale(1.1);
+  }
+  
+  /* Burn Metrics Section */
+  .burnMetrics {
+    background-color: #151515;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .burnMetrics::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #ff4500, #ff8c00, #ffcc00);
+  }
+  
+  .metricLabel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #aaaaaa;
+    font-size: 14px;
+  }
+  
+  .metricRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .liveIndicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ff4500;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .liveDot {
+    width: 8px;
+    height: 8px;
+    background-color: #ff4500;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.7);
+    }
+    50% {
+      opacity: 0.7;
+      box-shadow: 0 0 0 6px rgba(255, 69, 0, 0);
+    }
+  }
+  
+  .burnValue {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #ff4500, #ff8c00, #ffcc00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Progress Bar */
+  .progressContainer {
+    margin-top: 20px;
+  }
+  
+  .progressBarBg {
+    height: 12px;
+    background-color: #222222;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progressBar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff4500, #ff8c00, #ffcc00);
+    border-radius: 6px;
+    transition: width 0.5s ease;
+    position: relative;
+  }
+  
+  .progressFireEffect {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    animation: fireGlow 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes fireGlow {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  .progressInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666666;
+  }
+  
+  .progressPercentage {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff4500;
+  }
+  
+  /* Burn Tabs */
+  .burnTabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 10px;
+  }
+  
+  .burnTab {
+    background: transparent;
+    border: 1px solid #333333;
+    color: #aaaaaa;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .burnTab:hover {
+    border-color: #ff4500;
+    color: #ff4500;
+  }
+  
+  .burnTab.active {
+    background: rgba(255, 69, 0, 0.1);
+    border-color: #ff4500;
+    color: #ff4500;
+  }
+  
+  /* Metrics Panel */
+  .metricsPanel {
+    background-color: #151515;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 25px;
+  }
+  
+  /* Market Cap Display */
+  .marketCapShowcase {
+    margin: 30px 0;
+  }
+  
+  .marketCapDisplay {
+    background: linear-gradient(180deg, rgba(255, 69, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+    border: 1px solid rgba(255, 69, 0, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .marketCapDisplay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #ff4500, #ff8c00, #ffcc00);
+  }
+  
+  .marketCapTitle {
+    font-size: 14px;
+    color: #aaaaaa;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  
+  .marketCapValue {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: 'Iceland', monospace;
+    background: linear-gradient(to right, #ff4500, #ff8c00, #ffcc00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 2;
+    animation: pulseText 3s infinite alternate;
+  }
+  
+  @keyframes pulseText {
+    0% {
+      filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.7));
+    }
+    100% {
+      filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.9));
+    }
+  }
+  
+  /* Fire Container and Particles */
+  .fireContainer {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .fireBase {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to top, 
+      rgba(255, 69, 0, 0.6), 
+      rgba(255, 69, 0, 0.3), 
+      transparent);
+    filter: blur(5px);
+  }
+  
+  .fireParticle {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 60px;
+    background: radial-gradient(
+      ellipse at center, 
+      rgba(255, 204, 0, 0.8) 0%, 
+      rgba(255, 140, 0, 0.6) 50%, 
+      rgba(255, 69, 0, 0.4) 100%
+    );
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    filter: blur(2px);
+    opacity: 0.9;
+    animation: flameRise 3s infinite;
+  }
+  
+  .fireParticle1 {
+    left: 20%;
+    animation-delay: -0.5s;
+  }
+  
+  .fireParticle2 {
+    left: 35%;
+    animation-delay: -1.5s;
+    height: 50px;
+  }
+  
+  .fireParticle3 {
+    left: 50%;
+    animation-delay: -0.7s;
+    height: 65px;
+  }
+  
+  .fireParticle4 {
+    left: 65%;
+    animation-delay: -2s;
+    height: 45px;
+  }
+  
+  .fireParticle5 {
+    left: 80%;
+    animation-delay: -1.2s;
+    height: 55px;
+  }
+  
+  @keyframes flameRise {
+    0% {
+      transform: translateY(0) scaleX(1) scaleY(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translateY(-30px) scaleX(0.9) scaleY(1.2);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-60px) scaleX(0.7) scaleY(0.8);
+      opacity: 0;
+    }
+  }
+  
+  /* Burn Stats Grid */
+  .burnStatsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+  }
+  
+  .statCard {
+    background-color: #0f0f0f;
+    border: 1px solid #222222;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .statCard:hover {
+    border-color: rgba(255, 69, 0, 0.3);
+    background-color: #141414;
+  }
+  
+  .statLabel {
+    font-size: 12px;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  .statValue {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  
+  .statValue.highlight {
+    color: #ff4500;
+  }
+  
+  .statSub {
+    font-size: 11px;
+    color: #666666;
+    margin-top: 5px;
+  }
+  
+  .burnAmount {
+    color: #ff4500;
+    font-weight: 600;
+  }
+  
+  /* History Table */
+  .historyTable {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  .historyTable table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .historyTable th,
+  .historyTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #222222;
+  }
+  
+  .historyTable th {
+    color: #aaaaaa;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .historyTable td {
+    color: #ffffff;
+    font-size: 14px;
+  }
+  
+  .historyTable tr:hover {
+    background-color: rgba(255, 69, 0, 0.05);
+  }
+  
+  .txLink {
+    color: #ff4500;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+  }
+  
+  .txLink:hover {
+    text-decoration: underline;
+  }
+  
+  /* Tokenomics Grid */
+  .tokenomicsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .tokenomicsCard {
+    background-color: #151515;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  
+  .tokenomicsCard:hover {
+    border-color: rgba(255, 69, 0, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  .tokenomicsLabel {
+    font-size: 12px;
+    color: #aaaaaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  .tokenomicsValue {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  /* V1 Tokenomics Grid - Cards with Icons */
+  .tokenomicsGridV1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .tokenomicsCardV1 {
+    background-color: #0f0f0f;
+    border: 1px solid #222222;
+    border-radius: 12px;
+    padding: 25px 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .tokenomicsCardV1:hover {
+    border-color: rgba(255, 69, 0, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .tokenomicsIconV1 {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+  }
+  
+  .tokenomicsIconV1 svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .tokenomicsTitleV1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  .tokenomicsDescV1 {
+    font-size: 14px;
+    color: #888888;
+    line-height: 1.5;
+  }
+  
+  .burnWalletAddress {
+    margin-top: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    background-color: rgba(255, 69, 0, 0.1);
+    border-radius: 4px;
+    padding: 6px 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    color: #ff4500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .burnWalletAddress:hover {
+    background-color: rgba(255, 69, 0, 0.15);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 40px 0;
+    }
+    
+    .logoContainer {
+      width: 180px;
+      height: 180px;
+    }
+    
+    .logo {
+      width: 150px;
+      height: 150px;
+    }
+    
+    .logoGlow {
+      width: 200px;
+      height: 200px;
+    }
+    
+    .slogan {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    
+    .heroButtons {
+      flex-direction: column;
+      width: 100%;
+      padding: 0 20px;
+    }
+    
+    .button {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .burnValue {
+      font-size: 36px;
+    }
+    
+    .marketCapValue {
+      font-size: 36px;
+    }
+    
+    .burnTabs {
+      flex-direction: column;
+    }
+    
+    .burnTab {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .burnStatsGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tokenomicsGridV1 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .tokenName {
+      font-size: 36px;
+    }
+    
+    .contractAddress {
+      font-size: 11px;
+      padding: 8px 15px;
+    }
+    
+    .historyTable th:nth-child(3),
+    .historyTable td:nth-child(3) {
+      display: none;
+    }
+    
+    .burnStatsGrid {
+      grid-template-columns: 1fr;
+    }
+    
+    .tokenomicsGridV1 {
+      grid-template-columns: 1fr;
+    }
+    
+    .statValue {
+      font-size: 20px;
+    }
+  }
+  
+  /* ===================== */
+  /* THE INFERNO PROTOCOL  */
+  /* ===================== */
+  
+  .protocolMechanism {
+    background-color: #151515;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .protocolMechanism::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, #ff4500, #ff8c00, #ffcc00);
+  }
+  
+  /* Steps Container - Flow Diagram */
+  .stepsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 40px;
+    padding: 0 10px;
+    isolation: isolate;
+  }
+  
+  .timeline {
+    position: absolute;
+    top: 35px;
+    left: 80px;
+    right: 80px;
+    height: 2px;
+    background: linear-gradient(to right, #333333, #ff4500, #333333);
+    z-index: 0;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    max-width: 140px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .stepIcon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #1a1a1a;
+    border: 2px solid #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    color: #aaaaaa;
+  }
+  
+  .stepIcon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .stepIcon:hover {
+    border-color: #ff4500;
+    transform: scale(1.05);
+  }
+  
+  .stepIcon.active {
+    background: #1f1410;
+    border-color: #ff4500;
+    color: #ff4500;
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+  }
+  
+  .stepTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+  
+  .stepTitleActive {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ff4500;
+    margin-bottom: 5px;
+  }
+  
+  .stepDescription {
+    font-size: 12px;
+    color: #888888;
+    line-height: 1.4;
+  }
+  
+  /* Mechanism Description */
+  .mechanismDescription {
+    text-align: center;
+    color: #aaaaaa;
+  }
+  
+  .mechanismDescription p {
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  .mechanismDescription strong {
+    color: #ffffff;
+  }
+  
+  .featureBox {
+    padding: 20px 25px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: left;
+    position: relative;
+  }
+  
+  .featureBox.primary {
+    background-color: rgba(255, 69, 0, 0.05);
+    border-left: 3px solid #ff4500;
+  }
+  
+  .featureBox.secondary {
+    background-color: rgba(255, 140, 0, 0.05);
+    border-left: 3px solid #ff8c00;
+  }
+  
+  .burnFeature {
+    color: #ff4500;
+    font-weight: 600;
+  }
+  
+  /* ===================== */
+  /* FOOTER                */
+  /* ===================== */
+  
+  .footer {
+    margin-top: 80px;
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 69, 0, 0.1);
+  }
+  
+  .footerContent {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .followText {
+    color: #aaaaaa;
+    margin-bottom: 25px;
+    font-size: 16px;
+  }
+  
+  .socialLinks {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .socialLink {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #151515;
+    border: 1px solid #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .socialLink:hover {
+    background-color: rgba(255, 69, 0, 0.1);
+    border-color: #ff4500;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.2);
+  }
+  
+  .copyright {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 10px;
+  }
+  
+  .disclaimer {
+    font-size: 12px;
+    color: #444444;
+    font-style: italic;
+  }
+  
+  /* Protocol Section Responsive */
+  @media (max-width: 992px) {
+    .stepsContainer {
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    
+    .timeline {
+      display: none;
+    }
+    
+    .step {
+      flex: 0 0 30%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .protocolMechanism {
+      padding: 30px 20px;
+    }
+    
+    .step {
+      flex: 0 0 45%;
+    }
+    
+    .stepIcon {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .stepIcon svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .featureBox {
+      padding: 15px 20px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .step {
+      flex: 0 0 100%;
+    }
+    
+    .stepsContainer {
+      gap: 20px;
+    }
+    
+    .footer {
+      padding: 40px 0;
+      margin-top: 60px;
+    }
+  }
